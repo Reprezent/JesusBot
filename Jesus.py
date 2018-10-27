@@ -100,7 +100,14 @@ async def on_message(message):
         elif message.content.lower().startswith(DANK):
             getRedditImage('dankmemes', False)
             await bot.send_file(message.channel, "images/dankmemes.jpg")
-            
+
+        elif message.content.lower().startswith("i love anime"):
+            contents = urllib.request.urlopen("https://nekobot.xyz/api/image?type=hentai").read()
+            with open("images/iloveanime.jpg", "wb") as fi:
+                fi.write(contents)
+
+            await bot.send_file(message.channel, "images/iloveanime.jpg")
+
         elif message.content.lower().startswith("get image from subreddit "):
             subreddit = message.content.split()[4].lower()
             if subreddit[ : 3] == '/r/':
